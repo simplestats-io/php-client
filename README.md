@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/packagist/l/simplestats-io/php-client.svg?style=flat-square)](https://packagist.org/packages/simplestats-io/php-client)
 <!--[![Total Downloads](https://img.shields.io/packagist/dt/simplestats-io/php-client.svg?style=flat-square)](https://packagist.org/packages/simplestats-io/php-client)-->
 
-This is the official plain PHP client to send tracking data to [https://simplestats.io](https://simplestats.io). It works with any PHP 8.1+ application, no framework required.
+This is the official plain PHP client to send tracking data to [https://simplestats.io](https://simplestats.io). It works with any PHP 8.2+ application, no framework required.
 
 For Laravel applications, use the dedicated [Laravel Client](https://github.com/simplestats-io/laravel-client) instead, which provides automatic middleware, observers, and queue integration.
 
