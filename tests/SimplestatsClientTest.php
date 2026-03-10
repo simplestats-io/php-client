@@ -221,7 +221,7 @@ it('returns empty array for all methods when disabled', function () {
         'enabled' => false,
     ]);
 
-    $time = new DateTimeImmutable();
+    $time = new DateTimeImmutable;
 
     expect($client->trackVisitor('hash'))->toBe([])
         ->and($client->trackUser(1, $time))->toBe([])
@@ -246,7 +246,7 @@ it('throws ApiRequestFailed on error response', function () {
         new Response(422, [], json_encode(['message' => 'Validation failed'])),
     ]);
 
-    $time = new DateTimeImmutable();
+    $time = new DateTimeImmutable;
     $client->trackVisitor('hash', time: $time);
 })->throws(ApiRequestFailed::class, 'Reason: Validation failed');
 
@@ -256,7 +256,7 @@ it('includes status code in ApiRequestFailed exception', function () {
     ]);
 
     try {
-        $client->trackVisitor('hash', time: new DateTimeImmutable());
+        $client->trackVisitor('hash', time: new DateTimeImmutable);
         $this->fail('Expected ApiRequestFailed');
     } catch (ApiRequestFailed $e) {
         expect($e->statusCode)->toBe(403)
@@ -291,7 +291,7 @@ it('sends bearer token in authorization header', function () {
     $history = [];
     $client = createClient([new Response(200, [], '{}')], $history);
 
-    $client->trackVisitor('hash', time: new DateTimeImmutable());
+    $client->trackVisitor('hash', time: new DateTimeImmutable);
 
     $authHeader = end($history)['request']->getHeader('Authorization')[0];
     expect($authHeader)->toBe('Bearer test-token');

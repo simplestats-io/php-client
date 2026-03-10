@@ -4,6 +4,4 @@ namespace SimpleStatsIo\PhpClient\Exceptions;
 
 use RuntimeException;
 
-class SimplestatsException extends RuntimeException
-{
-}
+class SimplestatsException extends RuntimeException {}

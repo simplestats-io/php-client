@@ -116,7 +116,7 @@ final class TrackingData
         $host = $parsed['host'] ?? null;
 
         if ($host === null) {
-            $parsed = parse_url('https://' . $_SERVER['HTTP_REFERER']);
+            $parsed = parse_url('https://'.$_SERVER['HTTP_REFERER']);
             $host = $parsed['host'] ?? null;
         }
 

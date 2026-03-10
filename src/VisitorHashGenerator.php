@@ -18,7 +18,7 @@ final class VisitorHashGenerator
         ?string $date = null
     ): string {
         $date = $date ?? date('Y-m-d');
-        $hash = hash('sha256', $ip . $userAgent . $date . $secretKey);
+        $hash = hash('sha256', $ip.$userAgent.$date.$secretKey);
 
         return substr($hash, 0, 32);
     }
