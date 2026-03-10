@@ -36,7 +36,7 @@ final class Config
         }
 
         $this->apiToken = $config['api_token'];
-        $this->apiUrl = rtrim($config['api_url'] ?? 'https://simplestats.io/api/v1/', '/') . '/';
+        $this->apiUrl = rtrim($config['api_url'] ?? 'https://simplestats.io/api/v1/', '/').'/';
         $this->timeout = $config['timeout'] ?? 5;
         $this->maxRetries = $config['max_retries'] ?? 3;
         $this->enabled = $config['enabled'] ?? true;

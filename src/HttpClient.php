@@ -34,7 +34,7 @@ final class HttpClient
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $config->apiToken,
+                'Authorization' => 'Bearer '.$config->apiToken,
                 'X-SimpleStats-Client-Version' => $this->getVersion(),
             ],
             'handler' => $stack,
@@ -59,7 +59,7 @@ final class HttpClient
 
             if ($response === null) {
                 throw new ApiRequestFailed(
-                    'Request failed: ' . $e->getMessage(),
+                    'Request failed: '.$e->getMessage(),
                     0,
                     ''
                 );
@@ -70,7 +70,7 @@ final class HttpClient
             $message = $json['message'] ?? 'unknown';
 
             throw new ApiRequestFailed(
-                'Reason: ' . $message,
+                'Reason: '.$message,
                 $response->getStatusCode(),
                 $body
             );

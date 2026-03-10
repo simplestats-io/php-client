@@ -27,7 +27,7 @@ it('sets all constructor properties', function () {
 });
 
 it('defaults all properties to null', function () {
-    $data = new TrackingData();
+    $data = new TrackingData;
 
     expect($data->ip)->toBeNull()
         ->and($data->userAgent)->toBeNull()
