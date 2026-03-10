@@ -1,0 +1,48 @@
+{
+    "name": "simplestats-io/php-client",
+    "description": "Plain PHP client for SimpleStats analytics. Works with any PHP application.",
+    "keywords": [
+        "simplestats-io",
+        "php",
+        "analytics",
+        "tracking"
+    ],
+    "homepage": "https://github.com/simplestats-io/php-client",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zacharias Creutznacher",
+            "email": "zacharias.creutznacher@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.7",
+        "phpstan/phpstan": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "SimpleStatsIo\\PhpClient\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SimpleStatsIo\\PhpClient\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
