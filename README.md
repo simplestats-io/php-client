@@ -12,7 +12,7 @@ For Laravel applications, use the dedicated [Laravel Client](https://github.com/
 
 ## Introduction
 
-_**SimpleStats**_ is a streamlined analytics tool that goes beyond simple page views. It offers **precise insights** into user origins and behaviors through server-side tracking. With default tracking and filtering via [UTM](https://en.wikipedia.org/wiki/UTM_parameters) codes, you gain detailed analysis of **marketing** campaigns, identifying which efforts drive **revenue**. Effortlessly evaluate campaign **ROI**, discover cost-effective user acquisition channels, and pinpoint the most effective performance channels. _SimpleStats_ ensures full **GDPR compliance** and is unaffected by ad blockers since all tracking occurs server-side.
+_**SimpleStats**_ is **analytics that goes beyond simple page views**. Track **visitors**, **registrations**, and **payments**. Discover which channels actually drive **revenue**, not just traffic. With server-side tracking and filtering via [UTM](https://en.wikipedia.org/wiki/UTM_parameters) codes, you get detailed analysis of **marketing** efforts and clearly see which channels drive **revenue**. Effortlessly evaluate **ROI**, identify cost-effective user acquisition channels, and pinpoint the most effective performance channels. _SimpleStats_ is fully **GDPR compliant** and unaffected by ad blockers since all tracking occurs server-side.
 
 ![screenshot](https://simplestats.io/images/screenshot.png)
 

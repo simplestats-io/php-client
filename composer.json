@@ -1,11 +1,15 @@
 {
     "name": "simplestats-io/php-client",
-    "description": "Plain PHP client for SimpleStats analytics. Works with any PHP application.",
+    "description": "Plain PHP client for SimpleStats analytics. Track visitors, registrations, and payments. Discover which channels actually drive revenue, not just traffic. Server-side, GDPR compliant.",
     "keywords": [
         "simplestats-io",
         "php",
         "analytics",
-        "tracking"
+        "tracking",
+        "revenue-attribution",
+        "marketing-attribution",
+        "gdpr",
+        "server-side-tracking"
     ],
     "homepage": "https://github.com/simplestats-io/php-client",
     "license": "MIT",
