@@ -81,3 +81,46 @@ it('includes null values in toPayloadArray for unset properties', function () {
         ->and($payload['ip'])->toBeNull()
         ->and($payload['track_medium'])->toBeNull();
 });
+
+afterEach(function () {
+    unset($_GET['utm_source'], $_GET['ref'], $_GET['referer'], $_GET['referrer'], $_SERVER['HTTP_REFERER']);
+});
+
+it('reads the source from utm_source and ref, but never from referer/referrer query params', function () {
+    $_GET['referer'] = 'newsletter';
+    $_GET['referrer'] = 'https://news.ycombinator.com';
+
+    // referer/referrer are no longer source aliases, so the source stays empty.
+    expect(TrackingData::fromGlobals()->source)->toBeNull();
+
+    $_GET['ref'] = 'newsletter';
+    expect(TrackingData::fromGlobals()->source)->toBe('newsletter');
+
+    $_GET['utm_source'] = 'google';
+    expect(TrackingData::fromGlobals()->source)->toBe('google');
+});
+
+it('extracts the referer host from the HTTP referer header', function () {
+    $_SERVER['HTTP_REFERER'] = 'https://www.news.ycombinator.com/item?id=1';
+
+    expect(TrackingData::fromGlobals()->referer)->toBe('news.ycombinator.com');
+});
+
+it('excludes the exact own domain as a self-referral', function () {
+    $_SERVER['HTTP_REFERER'] = 'https://www.my-app.test/dashboard';
+
+    expect(TrackingData::fromGlobals('https://my-app.test')->referer)->toBeNull();
+});
+
+it('keeps a subdomain of the own domain as a referer (separate property)', function () {
+    $_SERVER['HTTP_REFERER'] = 'https://account.my-app.test/login';
+
+    expect(TrackingData::fromGlobals('https://my-app.test')->referer)->toBe('account.my-app.test');
+});
+
+it('does not treat an unrelated host that merely shares a substring as the own domain', function () {
+    // app.test is a substring of your-app.test but a different host.
+    $_SERVER['HTTP_REFERER'] = 'https://app.test';
+
+    expect(TrackingData::fromGlobals('https://your-app.test')->referer)->toBe('app.test');
+});

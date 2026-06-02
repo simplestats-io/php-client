@@ -162,8 +162,8 @@ $trackingData = TrackingData::fromGlobals(appUrl: 'https://yourapp.com');
 This automatically extracts:
 - **IP address** from proxy-aware headers (Cloudflare, Akamai, X-Forwarded-For, X-Real-IP, REMOTE_ADDR)
 - **User agent** from the request
-- **UTM parameters** from query string (`utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `ref`, `referer`, `referrer`, `adGroup`, `adGroupId`)
-- **Referer** domain from the HTTP referer header (self-referrals excluded via `appUrl`)
+- **UTM parameters** from query string (`utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `ref`, `adGroup`, `adGroupId`)
+- **Referer** domain from the HTTP referer header
 - **Page entry** path (URI without query string)
 
 ### Build manually

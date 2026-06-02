@@ -33,7 +33,7 @@ final class TrackingData
             ip: $ip,
             userAgent: $userAgent,
             referer: $referer,
-            source: self::getTrackingParam(['utm_source', 'ref', 'referer', 'referrer']),
+            source: self::getTrackingParam(['utm_source', 'ref']),
             medium: self::getTrackingParam(['utm_medium', 'adGroup', 'adGroupId']),
             campaign: self::getTrackingParam(['utm_campaign']),
             term: self::getTrackingParam(['utm_term']),
@@ -112,24 +112,47 @@ final class TrackingData
             return null;
         }
 
-        $parsed = parse_url($_SERVER['HTTP_REFERER']);
-        $host = $parsed['host'] ?? null;
+        $referer = self::extractHost($_SERVER['HTTP_REFERER']);
 
-        if ($host === null) {
-            $parsed = parse_url('https://'.$_SERVER['HTTP_REFERER']);
-            $host = $parsed['host'] ?? null;
-        }
-
-        if ($host === null) {
-            return null;
-        }
-
-        $referer = preg_replace('/^www\./', '', $host);
-
-        if ($appUrl !== null && str_contains($appUrl, $referer)) {
+        if ($referer === '' || self::isOwnDomain($referer, $appUrl)) {
             return null;
         }
 
         return $referer;
+    }
+
+    /**
+     * Reduce a url/host value to its bare, lowercased host without a leading "www.".
+     *
+     * Kept in sync with the SimpleStats backend (HasStatsTracking::normalizeHost)
+     * and the laravel-client (CheckTracking::extractHost); update all three together.
+     */
+    private static function extractHost(?string $value): string
+    {
+        if (empty($value)) {
+            return '';
+        }
+
+        $host = parse_url($value, PHP_URL_HOST)
+            ?? parse_url('https://'.$value, PHP_URL_HOST)
+            ?? '';
+
+        return preg_replace('/^www\./', '', strtolower($host));
+    }
+
+    /**
+     * Whether the given host is the application's own domain. Only the exact host
+     * counts: a subdomain (asdf.my-app.com) may be a separate property whose traffic
+     * to the app is a legitimate referer. www is already normalised away.
+     */
+    private static function isOwnDomain(string $host, ?string $appUrl): bool
+    {
+        $appHost = self::extractHost($appUrl);
+
+        if ($host === '' || $appHost === '') {
+            return false;
+        }
+
+        return $host === $appHost;
     }
 }
