@@ -195,7 +195,7 @@ final class SimplestatsClient
 
     public static function formatTime(DateTimeInterface $time): string
     {
-        if ($time instanceof \DateTimeImmutable) {
+        if ($time instanceof DateTimeImmutable) {
             return $time->setTimezone(new DateTimeZone('UTC'))->format(self::TIME_FORMAT);
         }
 

@@ -2,6 +2,7 @@
 
 namespace SimpleStatsIo\PhpClient;
 
+use Composer\InstalledVersions;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
@@ -107,8 +108,8 @@ final class HttpClient
 
     private function getVersion(): string
     {
-        if (class_exists(\Composer\InstalledVersions::class)) {
-            return \Composer\InstalledVersions::getVersion('simplestats-io/php-client') ?? 'unknown';
+        if (class_exists(InstalledVersions::class)) {
+            return InstalledVersions::getVersion('simplestats-io/php-client') ?? 'unknown';
         }
 
         return 'unknown';
